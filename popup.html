@@ -1,12 +1,26 @@
 <html>
-<head>
-	<link type="text/css" rel="stylesheet" href="css/base.css">
-	<link type="text/css" rel="stylesheet" href="css/jquery-ui.1.11.3.css">
-</head>
-<body>
-	<div id="logo">
-		<img src="images/popup_logo.jpg" border="0" alt="SR Logo">
-	</div>
-	<div id="payload"></div>
-<script src="smartercheck.js"></script>
-</body>
+	<head>
+		<link type="text/css" rel="stylesheet" href="css/base.css">
+		<link type="text/css" rel="stylesheet" href="css/jquery-ui.1.11.3.css">
+	</head>
+		<body>
+			<div id="logo">
+				<img src="images/popup_logo.jpg" border="0" alt="SR Logo">
+				<p>Visitor Lookup Tool</p>
+			</div>
+			<div id="session">
+				<div id="iconContainer">
+					<div id="userIcon">
+						<img src="images/user-icon-sprite.png" />
+					</div>
+				</div>
+				<div id="sessionInfo">
+					<div>Session ID <br/><span id="session_id"></span></div>
+					<div>Session Create <br/><span id="session_create_date"></span>&nbsp;&nbsp; <span id="session_create_time"></span></div>
+					<div>Email <br/><span id="session_email"></span></div>
+					<div>Loiid <br/><span id="session_loiid"></span></div>
+				</div>
+			</div>
+		</body>
+	<script src="SmarterCheck.js"></script>
+</html>

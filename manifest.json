@@ -12,20 +12,8 @@
         "default_title": "SmarterHQ Plugin",
         "default_popup": "popup.html"
     },
-
-    "content_scripts": [
-    	{
-    		"matches": [
-    			"http://*/*",
-		        "https://*/*"
-    		],
-    		"js":["SmarterCheck.js"],
-    		"run_at": "document_end",
-    		"all_frames": false
-    	}
-    ],
     "background": {
-        "scripts": ["lib/jquery.1.11.2.js", "lib/jquery-ui.1.11.3.js", "background.js"]
+        "scripts": ["lib/jquery.1.11.2.js", "lib/jquery-ui.1.11.3.js"]
     },
 	"permissions": ["notifications", "tabs", "activeTab", "<all_urls>", "cookies"]
 }
