@@ -1,16 +1,10 @@
-var getActiveTabUrl = function() {
-    chrome.tabs.getSelected(null,function(tab) {
-        var tabUrl = tab.url;
-        tabUrl = tabUrl.split("://")[1];
-        tabUrl = tabUrl.split("/")[0]
-        console.log("the active chrome tab url is: " + tabUrl);
-        return tabUrl;
-    });
-};
+chrome.tabs.getSelected(null,function(tab) {
+    var tabUrl = tab.url;
+    tabUrl = tabUrl.split("://")[1];
+    tabUrl = tabUrl.split("/")[0]
+    console.log("the active chrome tab url is: " + tabUrl);
+});
 
-var tabshit = getActiveTabUrl();
-
-console.log(tabshit);
 
 var clientIdList = {
     "store.smarterhq.com": 231,
@@ -18,20 +12,9 @@ var clientIdList = {
     "www.footwearetc.com": 24
 };
 
+// short hand for pushing content to the extension window via ID's
 var addContent = function(id, content) {
     return document.getElementById(id).textContent = content;
-};
-
-var deleteCookie = function() {
-    // var currentDomain = document;
-    // console.log("domain: " + currentDomain);
-    chrome.cookies.getAll({domain: "http://store.smarterhq.com/"}, function(cookies) {
-        console.log(cookies);
-        for(var i=0; i<cookies.length;i++) {
-            chrome.cookies.remove({url: "http://store.smarterhq.com/" + cookies[i].path, name: cookies[i].name});
-        }
-        console.log(cookies);
-    });
 };
 
 var sendToApi = function(trackingServer, accountNumber) {
@@ -92,7 +75,10 @@ var sendToApi = function(trackingServer, accountNumber) {
                 addContent("session_id", responseObj.session.ID);
                 addContent("session_create_date", responseObj.session.create.date);
                 addContent("session_create_time", responseObj.session.create.time);
-                // addContent("", responseObj.);
+                addContent("products_viewed", responseObj.session.products.viewed);
+                addContent("products_carted", responseObj.session.products.carted);
+                addContent("products_purchased", responseObj.session.products.purchased);
+                //addContent("", responseObj.);
               }
             }
             xhr.send();
@@ -100,12 +86,8 @@ var sendToApi = function(trackingServer, accountNumber) {
     });
 };
 
-window.onload = getActiveTabUrl();
+// Start documet listeners
 
 document.getElementById("refresh_loiid").addEventListener("click", function(){
     sendToApi("s871trkd02vw", "231");
-});
-
-document.getElementById("delete_cookie").addEventListener("click", function(){
-    deleteCookie();
 });
